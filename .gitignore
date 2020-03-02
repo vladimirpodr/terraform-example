@@ -2,3 +2,5 @@ dist
 node_modules
 .sass-cache
 tmp
+.idea/
+/.idea/
