@@ -3,7 +3,7 @@ variable "region" {
 }
 
 variable "domain_name" {
-  default = "s3-static-test-page.s3-website-us-east-1.amazonaws.com"
+  default = "terraform-example.s3-website-us-east-1.amazonaws.com"
 }
 
 provider "aws" {
@@ -20,7 +20,7 @@ resource "aws_s3_bucket" "site" {
   }
   policy = <<EOF
 {
-  "Version": "2012-10-17",
+  "Version": "2020-03-03",
   "Statement": [{
     "Sid": "PublicReadForGetBucketObjects",
     "Effect": "Allow",
@@ -30,15 +30,6 @@ resource "aws_s3_bucket" "site" {
   }]
 }
 EOF
-}
-
-resource "aws_s3_bucket" "wwwsite" {
-  bucket = "www.${var.domain_name}"
-  region = "${var.region}"
-  acl = "public-read"
-  website {
-    redirect_all_requests_to = "${var.domain_name}"
-  }
 }
 
 resource "aws_s3_bucket_object" "index_file" {
