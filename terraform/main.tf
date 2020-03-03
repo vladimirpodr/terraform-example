@@ -170,7 +170,7 @@ module "ec2_instances" "ec2_vpc_first"{
   ami                    = "ami-0c5204531f799e0c6"
   instance_type          = "t2.micro"
   vpc_security_group_ids = "${module.vpc.first.default_security_group_id}"
-  subnet_id              = module.vpc.first.public_subnets[0]
+  subnet_id              = "${module.vpc.first.public_subnets[0]}"
 
   tags = {
     Terraform   = "true"
@@ -187,7 +187,7 @@ module "ec2_instances" "ec2_vpc_second"{
   ami                    = "ami-0c5204531f799e0c6"
   instance_type          = "t2.micro"
   vpc_security_group_ids = "${module.vpc.second.default_security_group_id}"
-  subnet_id              = module.vpc.second.privat_subnets[0]
+  subnet_id              = "${module.vpc.second.privat_subnets[0]}"
 
   tags = {
     Terraform   = "true"
