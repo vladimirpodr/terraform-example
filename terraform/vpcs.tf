@@ -1,8 +1,8 @@
-module "vpc-west" {
+module "vpc" "first"{
   source  = "terraform-aws-modules/vpc/aws"
-  version = "1.53.0"
+  version = "2.21.0"
 
-  name = "terraform-vpc-west"
+  name = "terraform-vpc-first"
 
   cidr = "10.0.0.0/16"
 
@@ -13,11 +13,11 @@ module "vpc-west" {
   enable_dns_support   = true
 }
 
-module "vpc-east" {
+module "vpc" "second"{
   source  = "terraform-aws-modules/vpc/aws"
-  version = "1.53.0"
+  version = "2.21.0"
 
-  name = "terraform-vpc-east"
+  name = "terraform-vpc-second"
 
   cidr = "10.1.0.0/16"
 
@@ -29,8 +29,8 @@ module "vpc-east" {
 }
 
 resource "aws_vpc_peering_connection" "pc" {
-  peer_vpc_id = "${module.vpc-west.vpc_id}"
-  vpc_id      = "${module.vpc-east.vpc_id}"
+  peer_vpc_id = "${module.vpc.first.vpc_id}"
+  vpc_id      = "${module.vpc.second.vpc_id}"
   auto_accept = true
 
   accepter {
@@ -42,25 +42,25 @@ resource "aws_vpc_peering_connection" "pc" {
   }
 
   tags = {
-    Name = "vpc-east to vpc-west VPC peering"
+    Name = "VPC peering"
   }
 }
 
-resource "aws_route" "vpc-peering-route-east" {
+resource "aws_route" "vpc-peering-route-second" {
   count                     = 2
-  route_table_id            = "${module.vpc-east.public_route_table_ids[0]}"
-  destination_cidr_block    = "${module.vpc-west.public_subnets_cidr_blocks[count.index]}"
+  route_table_id            = "${module.vpc.second.public_route_table_ids[0]}"
+  destination_cidr_block    = "${module.vpc.first.public_subnets_cidr_blocks[count.index]}"
   vpc_peering_connection_id = "${aws_vpc_peering_connection.pc.id}"
 }
 
-resource "aws_route" "vpc-peering-route-west" {
+resource "aws_route" "vpc-peering-route-first" {
   count                     = 2
-  route_table_id            = "${module.vpc-west.public_route_table_ids[0]}"
-  destination_cidr_block    = "${module.vpc-east.public_subnets_cidr_blocks[count.index]}"
+  route_table_id            = "${module.vpc.first.public_route_table_ids[0]}"
+  destination_cidr_block    = "${module.vpc.second.public_subnets_cidr_blocks[count.index]}"
   vpc_peering_connection_id = "${aws_vpc_peering_connection.pc.id}"
 }
 
 resource "aws_vpc_endpoint" "s3" {
-  vpc_id       = "${module.vpc-west.vpc_id}"
+  vpc_id       = "${module.vpc.first.vpc_id}"
   service_name = "com.amazonaws.s3-website-us-east-1.s3-static-test-page"
 }
