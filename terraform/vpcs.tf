@@ -1,5 +1,6 @@
 module "vpc-west" {
   source  = "terraform-aws-modules/vpc/aws"
+  version = "2.17.0"
 
   name = "terraform-vpc-west"
 
@@ -14,6 +15,7 @@ module "vpc-west" {
 
 module "vpc-east" {
   source  = "terraform-aws-modules/vpc/aws"
+  version = "2.17.0"
 
   name = "terraform-vpc-east"
 
@@ -26,39 +28,9 @@ module "vpc-east" {
   enable_dns_support   = true
 }
 
-resource "aws_vpc_peering_connection" "pc" {
-# peer_vpc_id = module.vpc-west.vpc_id
-#  vpc_id      = module.vpc-east.vpc_id
-  auto_accept = true
 
-  accepter {
-    allow_remote_vpc_dns_resolution = true
-  }
 
-  requester {
-    allow_remote_vpc_dns_resolution = true
-  }
-
-  tags = {
-    Name = "vpc-east to vpc-west VPC peering"
-  }
+resource "aws_vpc_endpoint" "s3" {
+  vpc_id       = module.vpc-west.main_id
+  service_name = "com.amazonaws.s3-website-us-east-1.s3-static-test-page"
 }
-
-#resource "aws_route" "vpc-peering-route-east" {
-#  count                     = 2
-#  route_table_id            = module.vpc-east.privat_route_table_ids[0]
-#  destination_cidr_block    = module.vpc-west.public_subnets_cidr_blocks[count.index]
-#  vpc_peering_connection_id = aws_vpc_peering_connection.pc.id
-#}
-
-#resource "aws_route" "vpc-peering-route-west" {
-#  count                     = 2
-#  route_table_id            = module.vpc-west.public_route_table_ids[0]
-#  destination_cidr_block    = module.vpc-east.privat_subnets_cidr_blocks[count.index]
-#  vpc_peering_connection_id = aws_vpc_peering_connection.pc.id
-#}
-
-#resource "aws_vpc_endpoint" "s3" {
-#  vpc_id       = module.vpc-west.vpc_id
-#  service_name = "com.amazonaws.s3-website-us-east-1.s3-static-test-page"
-#}
