@@ -1,6 +1,5 @@
 module "vpc-west" {
   source  = "terraform-aws-modules/vpc/aws"
-  version = "2.17.0"
 
   name = "terraform-vpc-west"
 
@@ -15,7 +14,6 @@ module "vpc-west" {
 
 module "vpc-east" {
   source  = "terraform-aws-modules/vpc/aws"
-  version = "2.17.0"
 
   name = "terraform-vpc-east"
 
@@ -29,8 +27,8 @@ module "vpc-east" {
 }
 
 resource "aws_vpc_peering_connection" "pc" {
-  peer_vpc_id = module.vpc-west.main_id
-  vpc_id      = module.vpc-east.main_id
+  peer_vpc_id = module.vpc-west.vpc_id
+  vpc_id      = module.vpc-east.vpc_id
   auto_accept = true
 
   accepter {
