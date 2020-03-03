@@ -61,6 +61,6 @@ resource "aws_route" "vpc-peering-route-west" {
 }
 
 resource "aws_vpc_endpoint" "s3" {
-  vpc_id       = module.vpc-west.main_id
+  vpc_id       = ${module.vpc-west.vpc_id}
   service_name = "com.amazonaws.s3-website-us-east-1.s3-static-test-page"
 }
