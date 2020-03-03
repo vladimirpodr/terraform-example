@@ -1,9 +1,5 @@
-variable "region" {
-  default = "us-east-1"
-}
-
 variable "domain_name" {
-  default = "terraform-example.s3-website-us-east-1.amazonaws.com"
+  default = "terraform-example"
 }
 
 provider "aws" {
