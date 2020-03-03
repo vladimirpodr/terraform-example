@@ -1,9 +1,9 @@
 output "vpc-west" {
-  value = module.vpc-west.vpc_id
+  value = "${module.vpc-west.vpc_id}"
 }
 
 output "vpc-east" {
-  value = module.vpc-east.vpc_id
+  value = "${module.vpc-west.vpc_id}"
 }
 
 output "vpc_peering_connection" {
