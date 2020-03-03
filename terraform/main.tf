@@ -1,9 +1,9 @@
 variable "region" {
-  default = "us-west-2"
+  default = "us-west-1"
 }
 
 variable "domain_name" {
-  default = "mikeball.me"
+  default = "s3-static-test-page.s3-website-us-east-1.amazonaws.com"
 }
 
 provider "aws" {

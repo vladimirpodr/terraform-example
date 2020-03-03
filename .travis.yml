@@ -6,11 +6,11 @@ node_js:
 # establish environment variables
 env:
   global:
-    - GH_USER_NAME="TravisCI"
-    - GH_USER_EMAIL="mikedball@gmail.com"
-    - GH_REPO="mdb/terraform-example"
+    - GH_USER_NAME="vladimirpodr"
+    - GH_USER_EMAIL="vladimirpodr@gmail.com"
+    - GH_REPO="vladimirpodr/terraform-example"
     # encrypted GH_TOKEN and AWS credentials
-    - secure: "EBtNoRGUNjgom7lk6+O7Zh9A33X/251Cg7j5C+HqfkPMQcQwS6MEAXPT1vbnh1HoQixR1e6VTHdXxvWyE/14+98qtJiHnSbGiY67ZvQNDuFLb2+PKx7xhhl9heNj8Xk1K1SYJtfYQZIvZNl32V9db6eR3r7kKlWlpUVmnSnXrnm4ztI8se45OX/XPjAnARdBvkpbcTSprrAf7Qudc5R86ain18tJah6PICd12TIH4Cpdcr6CVL8kRK808VH+AS2oii7QcKXc084gBOJJLCiwa2DrcSEPOOk0AIn5ft+XVcaCsV6oOc6NliFKEPoJkaxbYWtunDlnqgB6epuaGrf99TfCg4E9R8sXBFqJwdMGDu3xM6Nddw87tMj/oCbUmjrNnl4qAxIMBD2TdjwFS1lNaXAML8W/jx3bNGSEg5MAYrqLL32eJta/vxRJwpCVnXUHxef9JcZMNZcvuKMdHC98JQIYbGRRFZ0cFtqMe63tgWafCi3WS+FIqSWnGdiKZ7dS110ANHaiQkDAZKTlh/9YJpzR9LyOoq7xXYtQIUovyDD2j498mAkcgByEbyZ39k6xMvLHHXsdUq25tdaMvqE3ZUASIDWqDk1QPfxkXX6n62Tj2X1HCA+3JI/DKyEfzt3QV4rntiP4Qv9jSuxNpd47rgsgVFg+HGJmko9QzAA/g+E="
+    - secure: "TybH2rcYSc699fkGDb1Jb4W+yOIgyUxoLTWrjT551Vxe4tY4zCiU83J+yNt+WBv09PDZg1YpURrEczLCi2UAfq0FyUskui5FwTYN065ZxYtXaw/htMAzI9wKAlbk4uQk1NZLD2JOA/RHcdadRiUZ3xVJ4b+F8ee8e81tN6BmE9Y74GeKFYcibnSvrdBzahUV3p1J+TtqzeqB6UiG4LqHHX8xGcQVl8T5Vz/nWFgjdOdFruEeBsPi5lfrV00iOi6DsCRaa5ltPAZZgVUv4uF1bJyvje3PUq8DCQscXO/rUTFOes2x66cVYDtYgVBchmvSD3RSH/cx2mo6EJiFZ9hrHhCwcNGO5lVJb7WPbG9oV63KHMGF4438+Qd5aOKZaQ2HUCzJf7zduZs0FwNuO5m9HQroQV+eq1BB8sf6R5SqWCp19jdp4KEwM87h8OfDoxZ+P/QFE/7ka9Sb7BIWxTUzks92ba9TH/igY4MEr6L3vP6zNVsw1ybakyRZ3+CIxW0o2cYf8LZC0DJ1nvNgnBpovp2PwP7G7BS77F7WndCxYF3c4oIRzODjNTT8vhKS6TLMDQphjdTDytc1v3J8hd+sh5IZxS3aNge6ZvuIDXzAFDnNppcYZhbsnkT7aVxdr1V1sOk5rNLj3RwxGhbr4tFo60aDoLJ+NGq0ycIFu7+RN4I="
 
 # install ruby sass/compass for use by gulp-node-sass
 before_install:
@@ -36,5 +36,5 @@ deploy:
     skip_cleanup: true
     script: "./deploy.sh"
     on:
-      repo: mdb/terraform-example
+      repo: vladimirpodr/terraform-example
       branch: master
