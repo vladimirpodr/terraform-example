@@ -20,7 +20,7 @@ resource "aws_s3_bucket" "site" {
   }
   policy = <<EOF
 {
-  "Version": "2020-03-03",
+  "Version": "2012-10-17",
   "Statement": [{
     "Sid": "PublicReadForGetBucketObjects",
     "Effect": "Allow",
