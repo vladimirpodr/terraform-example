@@ -1,5 +1,5 @@
 module "vpc" "first"{
-  source  = "terraform-aws-modules/vpc/aws"
+  source  = "github.com/terraform-aws-modules/terraform-aws-vpc"
   version = "2.21.0"
 
   name = "terraform-vpc-first"
@@ -14,7 +14,7 @@ module "vpc" "first"{
 }
 
 module "vpc" "second"{
-  source  = "terraform-aws-modules/vpc/aws"
+  source  = "github.com/terraform-aws-modules/terraform-aws-vpc"
   version = "2.21.0"
 
   name = "terraform-vpc-second"
