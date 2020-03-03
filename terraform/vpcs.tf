@@ -28,9 +28,3 @@ module "vpc-east" {
   enable_dns_support   = true
 }
 
-
-
-resource "aws_vpc_endpoint" "s3" {
-  vpc_id       = module.vpc-west.main_id
-  service_name = "com.amazonaws.s3-website-us-east-1.s3-static-test-page"
-}
