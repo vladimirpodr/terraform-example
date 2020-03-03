@@ -7,5 +7,5 @@ output "vpc-east" {
 }
 
 output "vpc_peering_connection" {
-  value = aws_vpc_peering_connection.pc.id
+  value = "${aws_vpc_peering_connection.pc.id}"
 }
