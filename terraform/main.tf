@@ -89,6 +89,7 @@ resource "aws_route53_record" "site" {
     zone_id = "${aws_s3_bucket.site.hosted_zone_id}"
     evaluate_target_health = false
   }
+
 }
 
 
@@ -195,3 +196,4 @@ module "ec2_instances" "ec2_vpc_second"{
     Terraform   = "true"
   }
 }
+
